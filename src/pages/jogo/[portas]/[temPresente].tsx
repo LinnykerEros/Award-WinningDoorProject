@@ -25,24 +25,23 @@ export default function Jogo() {
   }, [router?.query]);
 
   function renderizarPortas() {
-    return (
-      valido &&
-      portas.map((porta) => {
-        return (
-          <Porta
-            key={porta.numero}
-            value={porta}
-            onChange={(novaPorta) =>
-              setPortas(atualizarPortas(portas, novaPorta))
-            }
-          />
-        );
-      })
-    );
+    return portas.map((porta) => {
+      return (
+        <Porta
+          key={porta.numero}
+          value={porta}
+          onChange={(novaPorta) =>
+            setPortas(atualizarPortas(portas, novaPorta))
+          }
+        />
+      );
+    });
   }
   return (
     <div id={styles.jogo}>
-      <div className={styles.portas}>{renderizarPortas()}</div>
+      <div className={styles.portas}>
+        {valido ? renderizarPortas() : <h2>Valores invalidos</h2>}
+      </div>
       <div className={styles.botoes}>
         <Link href="/">
           <button>Reinicinar Jogo</button>
